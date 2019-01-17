@@ -8,15 +8,12 @@
 var characters = ["Spongebob Squarepants", "Patrick Star", "Squidward Tentacles", "Sandy Cheeks"];
 console.log(characters);
 
-// data attribute capturing function/ code source: 6.2 ajax 08 -->
-    var characterName = $(this).attr("data-name");
-
 // create a function to display character names from the global variable "characters"
 // function renderButtons 
 function renderButtons(){
     $(".character-buttons").empty();
     // for loop to loop through the character array
-    for (var i=0; i < characters.length; i++); {
+    for (var i = 0; i < characters.length; i++) {
         //using the for loop we can dynamically generate the buttons that loop through the character array
         //using jquery to generate the <button> tag in the character-button class
         var character = $("<button>");
@@ -28,9 +25,8 @@ function renderButtons(){
         character.text(characters[i]);
         // add the buttons to html by appending with $ .class to 
         $(".character-buttons").append(character);
-
     }
-};
+}
 
 // calling the renderButtons function to display buttons
 renderButtons();
