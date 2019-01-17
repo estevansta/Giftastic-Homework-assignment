@@ -28,5 +28,18 @@ function renderButtons(){
     }
 }
 
+// now form button clicked needs to submit and add character to the class array
+    //on click function to the add-character class
+    $("#add-character").on("click", function(event) {
+        //code from ajax 6.2 - 08 prevent defaulting when submitting a form
+        event.preventDefault();
+        // taking the input from user form textbox
+        var input = $("#character-input").val().trim();
+        // take input and add to array
+        characters.push(input);
+        renderButtons();
+    });
+    
+
 // calling the renderButtons function to display buttons
 renderButtons();
