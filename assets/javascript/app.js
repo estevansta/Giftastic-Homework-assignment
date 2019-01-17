@@ -20,13 +20,23 @@ function displayCharacterGifs (){
     $.ajax({
         url: queryURL,
         method: "GET"
-    }).then(function(data) {
+        //function method that applies the API info into <div>
+    })
+    .then(function(response) {
+        console.log(response);
+        console.log(queryURL);
+        //div that holds the gif
+        var characterGif = $("<div class='characterGif'>");
         // grabb GIF img url from API 
-        var imgURL = data.url;
+        var imgURL = response.data[i].url; //***** this might be the problem im facing */
         // creating an element to hold the gif/img
         var image = $("<img>").attr("src", imgURL);
         // append that image to html
-        append(image);
+        characterGif.append(image);
+
+        console.log(response.data[i].url);
+        console.log(response.url);
+        
     });
 }
 
