@@ -19,7 +19,7 @@ function displayCharacterGifs (){
         url: queryURL,
         method: "GET"
     }).then(function(reponse) {
-
+        
     });
 }
 
