@@ -1,12 +1,27 @@
 // create a webpage that has a theme of buttons that when clicked:
 // loads 10 gifs
 // when gifs are clicked they move; and stop when clicked again.
-// option to add button to the already populated array (looping) 
+// option to add button to the already populated array (looping)  DONE
 
 
 // my array of initial characters
 var characters = ["Spongebob Squarepants", "Patrick Star", "Squidward Tentacles", "Sandy Cheeks"];
 console.log(characters);
+
+// Using API from Giphy to "GET" method information and display gifs (10 gifs) code source function from ajax 6.2 - 10
+
+function displayCharacterGifs (){
+    var character = $(this).attr("data-name");
+    // inputting the API key within the giphy search + character input 
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_keyl9gkVHZUmGEHlRJIS6uWSknP6FhEXMnj=&q=" + character + "&limit=10&offset=1&rating=G&lang=en";
+    // AJAX call to "GET" the character button pressed
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(reponse) {
+
+    });
+}
 
 // create a function to display character names from the global variable "characters"
 // function renderButtons 
