@@ -13,13 +13,20 @@ console.log(characters);
 function displayCharacterGifs (){
     var character = $(this).attr("data-name");
     // inputting the API key within the giphy search + character input 
-    var queryURL = "https://api.giphy.com/v1/gifs/search?api_keyl9gkVHZUmGEHlRJIS6uWSknP6FhEXMnj=&q=" + character + "&limit=10&offset=1&rating=G&lang=en";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=l9gkVHZUmGEHlRJIS6uWSknP6FhEXMnj&q=" + character + "&limit=10&offset=1&rating=G&lang=en";
+                 //"https://api.giphy.com/v1/gifs/search?api_key=l9gkVHZUmGEHlRJIS6uWSknP6FhEXMnj&q=    spongebob   &limit=10&offset=0&rating=PG&lang=en";
+                 //"https://api.giphy.com/v1/gifs/search?api_keyl9gkVHZUmGEHlRJIS6uWSknP6FhEXMnj=&q=   spongebob     &limit=10&offset=1&rating=G&lang=en"
     // AJAX call to "GET" the character button pressed
     $.ajax({
         url: queryURL,
         method: "GET"
-    }).then(function(reponse) {
-        
+    }).then(function(data) {
+        // grabb GIF img url from API 
+        var imgURL = data.url;
+        // creating an element to hold the gif/img
+        var image = $("<img>").attr("src", imgURL);
+        // append that image to html
+        append(image);
     });
 }
 
@@ -55,6 +62,7 @@ function renderButtons(){
         renderButtons();
     });
     
+    $(document).on("click", ".character", displayCharacterGifs);
 
 // calling the renderButtons function to display buttons
 renderButtons();
