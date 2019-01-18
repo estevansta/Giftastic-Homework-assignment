@@ -17,6 +17,7 @@ function displayCharacterGifs (){
                  //"https://api.giphy.com/v1/gifs/search?api_key=l9gkVHZUmGEHlRJIS6uWSknP6FhEXMnj&q=    spongebob   &limit=10&offset=0&rating=PG&lang=en";
                  //"https://api.giphy.com/v1/gifs/search?api_keyl9gkVHZUmGEHlRJIS6uWSknP6FhEXMnj=&q=   spongebob     &limit=10&offset=1&rating=G&lang=en"
     // AJAX call to "GET" the character button pressed
+    console.log(character);
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -26,19 +27,30 @@ function displayCharacterGifs (){
         console.log(response);
         console.log(queryURL);
         //div that holds the gif
-        var characterGif = $("<div class='characterGif'>");
-        // grabb GIF img url from API 
-        var imgURL = response.data[i].url; //***** this might be the problem im facing */
+        var characterGif = $("<div class='character-results'>");
+        console.log(characterGif);
+        // grab GIF img url from API 
+        var imgURL = response.data[0].images.fixed_height.url; //***** this might be the problem im facing */
         // creating an element to hold the gif/img
         var image = $("<img>").attr("src", imgURL);
+        // $(".character-results").append("<img scr='" + imgURL + "'>");
         // append that image to html
         characterGif.append(image);
-
-        console.log(response.data[i].url);
+        console.log(response.data[0].images.fixed_height.url);
         console.log(response.url);
+
+        // rating for G-PG taken from AJAX 6.2 - 10
+        var rating = response.data[0].rating;
+        var pOne = $("<p>").text("Rating: " + rating);
+        characterGif.append(pOne);
+        console.log(characterGif);
+
         
     });
+        
+
 }
+
 
 // create a function to display character names from the global variable "characters"
 // function renderButtons 
@@ -62,7 +74,7 @@ function renderButtons(){
 
 // now form button clicked needs to submit and add character to the class array
     //on click function to the add-character class
-    $("#add-character").on("click", function(event) {
+$("#add-character").on("click", function(event) {
         //code from ajax 6.2 - 08 prevent defaulting when submitting a form
         event.preventDefault();
         // taking the input from user form textbox
@@ -72,7 +84,7 @@ function renderButtons(){
         renderButtons();
     });
     
-    $(document).on("click", ".character", displayCharacterGifs);
+$(document).on("click", ".character", displayCharacterGifs);
 
 // calling the renderButtons function to display buttons
 renderButtons();
